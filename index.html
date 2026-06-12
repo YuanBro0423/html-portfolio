@@ -1,29 +1,1107 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mondrian Project</title>
+  <title>汪祈渊 - 个人主页</title>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* 
-    Write your CSS here 
-    Gap Colour: #000
-    White: #F0F1EC
-    Red: #E72F24
-    Black: #232629
-    Blue: #004592
-    Yellow: #F9D01E
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    For dimensions, see dimensions.png image.
-    HINT: Remember you can't change the properties of grid lines.
-    But grid lines are transparent!
-    */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background-color: #0c0c0c;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.8;
+      transition: all 0.3s ease;
+    }
+
+    body.light {
+      background: #f5f7fa;
+      color: #222;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+      padding: 0 5%;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      transition: 0.3s;
+    }
+
+    body.light header {
+      background: rgba(255, 255, 255, 0.9);
+      color: #222;
+    }
+
+    .navbar {
+      max-width: 1400px;
+      margin: 0 auto;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-list {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-item {
+      position: relative;
+      padding: 8px 0;
+      cursor: pointer;
+    }
+
+    .nav-item > a {
+      font-size: 16px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-item:hover > a {
+      color: #4facfe;
+    }
+
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #111;
+      border-radius: 8px;
+      min-width: 160px;
+      padding: 10px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: 0.3s;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    body.light .submenu {
+      background: #fff;
+      color: #222;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-item:hover .submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .submenu li {
+      padding: 8px 20px;
+      transition: 0.2s;
+    }
+
+    .submenu li:hover {
+      background: #181818;
+      color: #4facfe;
+      padding-left: 24px;
+    }
+
+    body.light .submenu li:hover {
+      background: #f0f0f0;
+    }
+
+    #themeToggle {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    #themeToggle:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    body.light #themeToggle:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    .back-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: #4facfe;
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: 0.3s;
+      z-index: 99;
+    }
+
+    .back-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      padding: 100px 5% 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top right, #1a1a2e, #0c0c0c 60%);
+      position: relative;
+    }
+
+    body.light .hero {
+      background: linear-gradient(to right, #eef2f3, #dfe9f3);
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-text {
+      flex: 1 1 500px;
+    }
+
+    .hero-text h1 {
+      font-size: 52px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero-text .name {
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text .info {
+      font-size: 20px;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    body.light .hero-text .info {
+      color: #555;
+    }
+
+    .hero-text .desc {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 30px;
+      max-width: 550px;
+    }
+
+    body.light .hero-text .desc {
+      color: #444;
+    }
+
+    .btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(79, 172, 254, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #4facfe;
+      border: 1px solid #4facfe;
+    }
+
+    .btn-outline:hover {
+      background: #4facfe;
+      color: #000;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: #222;
+      color: #fff;
+    }
+
+    body.light .btn-secondary {
+      background: #ddd;
+      color: #222;
+    }
+
+    .hero-avatar {
+      flex: 0 0 280px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar-box {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(79, 172, 254, 0.3);
+      padding: 6px;
+      background: #111;
+      transition: 0.3s;
+    }
+
+    body.light .avatar-box {
+      background: #fff;
+      border-color: rgba(79, 172, 254, 0.2);
+    }
+
+    .avatar-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .avatar-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(79, 172, 254, 0.2);
+    }
+
+    .section {
+      padding: 100px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      display: inline-block;
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      border-radius: 2px;
+    }
+
+    .section-title p {
+      color: #777;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    body.light .section-title p {
+      color: #555;
+    }
+
+    .about-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 1 1 500px;
+    }
+
+    .about-text h3 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: #999;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    body.light .about-text p {
+      color: #333;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .feature {
+      background: #111;
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #222;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    body.light .feature {
+      background: #fff;
+      border-color: #eee;
+    }
+
+    .feature:hover {
+      border-color: #4facfe;
+      transform: translateY(-4px);
+    }
+
+    .feature i {
+      font-size: 24px;
+      color: #4facfe;
+      margin-bottom: 8px;
+    }
+
+    .collapse-item {
+      margin-bottom: 12px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #222;
+    }
+
+    body.light .collapse-item {
+      border-color: #eee;
+    }
+
+    .collapse-head {
+      padding: 14px 20px;
+      background: #111;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    body.light .collapse-head {
+      background: #fff;
+    }
+
+    .collapse-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.4s;
+      padding: 0 20px;
+      background: #0a0a0a;
+    }
+
+    body.light .collapse-body {
+      background: #fafafa;
+    }
+
+    .collapse-body.show {
+      max-height: 500px;
+      padding: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      height: 260px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+
+    .modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #fff;
+      font-size: 30px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .skills-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: #111;
+      padding: 28px;
+      border-radius: 12px;
+      border: 1px solid #222;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    body.light .skill-card {
+      background: #fff;
+      border-color: #eee;
+    }
+
+    .skill-card:hover {
+      border-color: #4facfe;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    body.light .skill-card:hover {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .skill-card h3 {
+      font-size: 20px;
+      margin-bottom: 14px;
+      color: #4facfe;
+    }
+
+    .skill-card p {
+      color: #888;
+      font-size: 15px;
+    }
+
+    body.light .skill-card p {
+      color: #444;
+    }
+
+    .exp-item {
+      background: #111;
+      padding: 24px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-left: 3px solid #4facfe;
+    }
+
+    body.light .exp-item {
+      background: #fff;
+    }
+
+    .exp-item h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .exp-item p {
+      color: #888;
+    }
+
+    body.light .exp-item p {
+      color: #333;
+    }
+
+    .contact-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .contact-card {
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      width: 220px;
+      border: 1px solid #222;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    body.light .contact-card {
+      background: #fff;
+      border-color: #eee;
+    }
+
+    .contact-card:hover {
+      border-color: #4facfe;
+      transform: translateY(-4px);
+    }
+
+    .contact-card i {
+      font-size: 30px;
+      color: #4facfe;
+      margin-bottom: 14px;
+    }
+
+    .contact-card h4 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .contact-card p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    body.light .contact-card p {
+      color: #555;
+    }
+
+    .music-player {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 99;
+    }
+
+    #musicToggle {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #4facfe;
+      color: #000;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+
+    #musicToggle:hover {
+      transform: scale(1.08);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      padding: 40px 5%;
+      text-align: center;
+      background: #080808;
+      color: #666;
+      font-size: 14px;
+    }
+
+    body.light footer {
+      background: #f0f0f0;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .nav-list {
+        gap: 16px;
+      }
+      .hero-text h1 {
+        font-size: 36px;
+      }
+      .section {
+        padding: 70px 5%;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <!-- Write your HTML here -->
-</body>
 
+<header>
+  <div class="navbar">
+    <div class="logo">汪祈渊</div>
+    <ul class="nav-list">
+      <li class="nav-item"><a href="#home">首页</a></li>
+      <li class="nav-item">
+        <a href="#about">关于我</a>
+        <ul class="submenu">
+          <li><a href="#about">个人简介</a></li>
+          <li><a href="#more">详细介绍</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#gallery">作品相册</a>
+        <ul class="submenu">
+          <li><a href="#gallery">风光摄影</a></li>
+          <li><a href="#travel">旅行记录</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#skill">技能</a>
+        <ul class="submenu">
+          <li><a href="#skill">专业能力</a></li>
+          <li><a href="#skill">兴趣特长</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="#contact">联系我</a></li>
+    </ul>
+    <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>你好，我是 <span class="name">汪祈渊</span></h1>
+      <div class="info">昆明学院 | 大三在读 | 摄影 & 旅行爱好者</div>
+      <p class="desc">
+        喜欢用镜头记录世界，用脚步丈量风景。在平凡的日常里寻找光影，在陌生的城市里感受生活。
+        踏实、认真、热爱生活，一直在路上，也一直在成长。
+      </p>
+      <div class="btns">
+        <button class="btn btn-primary" onclick="openGalleryModal()">查看相册</button>
+        <button class="btn btn-outline" onclick="scrollToContact()">联系我</button>
+        <button class="btn btn-secondary" onclick="openAboutModal()">个人介绍</button>
+      </div>
+    </div>
+    <div class="hero-avatar">
+      <div class="avatar-box">
+        <!-- 替换成你的头像：avatar.jpg -->
+        <img src="avatar.jpg" alt="汪祈渊" id="avatarImg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section fade-in">
+  <div class="section-title">
+    <h2>关于我</h2>
+    <p>了解我的性格、爱好、学习与生活态度</p>
+  </div>
+  <div class="about-wrap">
+    <div class="about-text">
+      <h3>基本信息</h3>
+      <p>我叫汪祈渊，目前是昆明学院大三学生，性格沉稳内敛，做事踏实细致，对待学习和生活始终保持认真负责的态度。在校期间遵守纪律，尊重师长，与同学相处融洽，具备良好的团队协作意识与沟通表达能力。</p>
+      <p>虽然没有参加过大型竞赛，也暂无荣誉获奖经历，但我始终坚持在自己的节奏里稳步成长，重视日常积累与实践体验，不追求虚名，更在意真实能力的提升。</p>
+      <p>课余时间我最大的爱好是摄影与旅行。摄影让我学会观察细节、捕捉瞬间，旅行则让我开阔眼界、锻炼独立生活能力。每一次按下快门，每一次出发远行，都是对生活的热爱与记录。</p>
+
+      <div id="more" style="margin-top:30px;">
+        <h3 style="margin-bottom:16px;">更多个人介绍</h3>
+        <div class="collapse-group">
+          <div class="collapse-item">
+            <div class="collapse-head" onclick="toggleCollapse(this)">
+              <span>性格特点</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="collapse-body">
+              为人真诚温和，做事稳重有耐心，责任心强，遇到问题会冷静思考，不急躁不逃避，善于倾听他人意见，在团队中能很好配合协作。
+            </div>
+          </div>
+          <div class="collapse-item">
+            <div class="collapse-head" onclick="toggleCollapse(this)">
+              <span>学习态度</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="collapse-body">
+              学习态度端正，课堂专注认真，课后主动复习巩固。具备较强自学能力，遇到不懂内容会主动查阅资料，坚持踏实积累，稳步提升专业水平。
+            </div>
+          </div>
+          <div class="collapse-item">
+            <div class="collapse-head" onclick="toggleCollapse(this)">
+              <span>生活习惯</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="collapse-body">
+              生活规律，作息稳定，热爱运动，喜欢户外行走。注重细节，做事有条理，善于规划时间，保持积极健康的生活状态。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-features">
+        <div class="feature" onclick="document.querySelector('#gallery').scrollIntoView({behavior: 'smooth'})">
+          <i class="fa-solid fa-camera"></i>
+          <p>摄影记录</p>
+        </div>
+        <div class="feature" onclick="document.querySelector('#travel').scrollIntoView({behavior: 'smooth'})">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <p>旅行规划</p>
+        </div>
+        <div class="feature" onclick="document.querySelector('#skill').scrollIntoView({behavior: 'smooth'})">
+          <i class="fa-solid fa-book"></i>
+          <p>认真学习</p>
+        </div>
+        <div class="feature" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
+          <i class="fa-solid fa-users"></i>
+          <p>团队协作</p>
+        </div>
+        <div class="feature" onclick="document.querySelector('#gallery').scrollIntoView({behavior: 'smooth'})">
+          <i class="fa-solid fa-palette"></i>
+          <p>审美良好</p>
+        </div>
+        <div class="feature" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
+          <i class="fa-solid fa-clock"></i>
+          <p>时间观念强</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skill" class="section fade-in">
+  <div class="section-title">
+    <h2>能力与特长</h2>
+    <p>日常积累的技能与个人优势</p>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill-card" onclick="showSkillInfo('摄影能力')">
+      <h3>摄影能力</h3>
+      <p>熟练使用相机与手机进行拍摄，擅长风光、人像、街拍与日常记录。对构图、光影、色彩有一定理解，能够根据场景调整参数，拍出有故事感的照片。</p>
+    </div>
+    <div class="skill-card" onclick="showSkillInfo('后期处理')">
+      <h3>后期处理</h3>
+      <p>掌握基础图片后期软件，能够进行调色、裁剪、修瑕、排版等操作，让照片更具质感，形成统一的视觉风格，提升作品整体表现力。</p>
+    </div>
+    <div class="skill-card" onclick="showSkillInfo('旅行规划')">
+      <h3>旅行规划</h3>
+      <p>擅长制定旅行攻略，包括路线规划、交通安排、住宿选择、景点打卡、预算控制等。独立出行经验丰富，应变能力强，能应对行程中的突发情况。</p>
+    </div>
+    <div class="skill-card" onclick="showSkillInfo('学习能力')">
+      <h3>学习能力</h3>
+      <p>具备良好的逻辑思维与自学能力，能够快速掌握新知识、新工具。对待专业课程认真踏实，作业完成质量高，有耐心，能坚持完成长期任务。</p>
+    </div>
+    <div class="skill-card" onclick="showSkillInfo('沟通表达')">
+      <h3>沟通表达</h3>
+      <p>待人真诚，性格温和，沟通方式得体，能够清晰表达自己的想法，也善于倾听他人意见。在团队合作中能够积极配合，共同完成目标。</p>
+    </div>
+    <div class="skill-card" onclick="showSkillInfo('生活态度')">
+      <h3>生活态度</h3>
+      <p>乐观积极，热爱生活，观察力强，善于发现身边的美好。心态稳定，抗压能力较好，面对困难能够冷静思考，寻找解决办法。</p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="section fade-in">
+  <div class="section-title">
+    <h2>摄影 & 旅行相册</h2>
+    <p>用镜头记录走过的风景与瞬间</p>
+  </div>
+  <div class="gallery">
+    <!-- 替换成你的8张图片：photo1.jpg ~ photo8.jpg -->
+    <div class="gallery-item" onclick="openImg(this)"><img src="photo1.jpg" alt="摄影作品"></div>
+    <div class="gallery-item" onclick="openImg(this)"><img src="photo2.jpg" alt="摄影作品"></div>
+    <div class="gallery-item" onclick="openImg(this)"><img src="photo3.jpg" alt="摄影作品"></div>
+    <div class="gallery-item" onclick="openImg(this)"><img src="photo4.jpg" alt="摄影作品"></div>
+    <div class="gallery-item" onclick="openImg(this)"><img src="photo5.jpg" alt="摄影作品"></div>
+    <div class="gallery-item" onclick="openImg(this)"><img src="photo6.jpg" alt="摄影作品"></div>
+    <div class="gallery-item" onclick="openImg(this)"><img src="photo7.jpg" alt="摄影作品"></div>
+    <div class="gallery-item" onclick="openImg(this)"><img src="photo8.jpg" alt="摄影作品"></div>
+  </div>
+</section>
+
+<section id="travel" class="section fade-in">
+  <div class="section-title">
+    <h2>旅行经历</h2>
+    <p>用脚步丈量世界，在旅途中成长</p>
+  </div>
+  <div class="exp-item">
+    <h3>旅行规划与实践</h3>
+    <p>擅长独立制定旅行攻略，从路线设计、交通预订到住宿选择，都能高效完成。多次前往不同城市与自然景区，在旅途中锻炼了应变能力与独立生活能力。</p>
+  </div>
+  <div class="exp-item">
+    <h3>旅行收获</h3>
+    <p>在旅途中感受不同地域的文化与生活节奏，开阔了视野，也让我更懂得珍惜当下。每一次远行都是一次自我更新，让我以更包容的心态面对生活。</p>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <div class="section-title">
+    <h2>学习与成长经历</h2>
+    <p>没有奖项，但有真实的成长与积累</p>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <h3>大学学习阶段</h3>
+      <p>进入昆明学院以来，始终保持端正的学习态度，认真完成课程学习、实验实践与小组项目。积极参与班级活动，配合老师与班委完成各项工作，多次参与课堂展示与小组汇报，表达与协作能力不断提升。</p>
+    </div>
+    <div class="exp-item">
+      <h3>校园生活与实践</h3>
+      <p>参与校园志愿服务、活动协助等工作，锻炼了责任心与执行力。在日常社团交流与同学合作中，学会了更好地与人相处，提升了沟通协调与问题处理能力。</p>
+    </div>
+    <div class="exp-item">
+      <h3>摄影爱好成长</h3>
+      <p>从最初的随手记录，到慢慢研究构图、光线、色彩，不断学习摄影知识，模仿优秀作品，形成自己的拍摄风格。积累了大量城市、风景、人文照片，记录了生活与旅途的点滴。</p>
+    </div>
+    <div class="exp-item">
+      <h3>自我提升与规划</h3>
+      <p>坚持日常学习与兴趣培养，利用课余时间学习后期、排版、内容整理等技能。对未来有清晰规划，希望在专业与兴趣方向继续深耕，不断提升综合竞争力。</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section fade-in">
+  <div class="section-title">
+    <h2>联系我</h2>
+    <p>交流摄影、旅行、学习，都可以找到我</p>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-card" onclick="copyInfo('邮箱：wangqiyuan@qq.com')">
+      <i class="fa-solid fa-envelope"></i>
+      <h4>邮箱</h4>
+      <p>LuckinWang2025@outlook</p>
+    </div>
+    <div class="contact-card" onclick="copyInfo('微信：wangqiyuan_01')">
+      <i class="fa-brands fa-weixin"></i>
+      <h4>微信</h4>
+      <p>Future_24N118E</p>
+    </div>
+    <div class="contact-card" onclick="copyInfo('电话：13800009999')">
+      <i class="fa-solid fa-phone"></i>
+      <h4>电话</h4>
+      <p>17718257375</p>
+    </div>
+    <div class="contact-card" onclick="showTip('摄影社交账号已复制')">
+      <i class="fa-brands fa-instagram"></i>
+      <h4>社交账号</h4>
+      <p>@lester819899</p>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="imgModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    <img id="modalImg" src="">
+  </div>
+</div>
+
+<!-- 本地音乐 + 在线备用音乐（双保险） -->
+<div class="music-player">
+  <button id="musicToggle"><i class="fa-solid fa-music"></i></button>
+  <audio id="bgm" loop>
+    <!-- 优先播放你自己的本地音乐 -->
+    <source src="bgm.mp3" type="audio/mpeg">
+    <!-- 备用在线音乐（防止本地读不出） -->
+    <source src="https://ftp.optixsoft.cn/music/relax.mp3" type="audio/mpeg">
+    您的浏览器不支持音频播放
+  
+</div>
+
+<div class="back-top" onclick="toTop()" id="backTop">
+  <i class="fa-solid fa-arrow-up"></i>
+</div>
+
+<footer>
+  © 2026 汪祈渊 · 昆明学院 · 个人主页
+</footer>
+
+<script>
+  // 滚动渐入
+  const fadeElements = document.querySelectorAll('.fade-in');
+  window.addEventListener('scroll', () => {
+    const windowHeight = window.innerHeight;
+    fadeElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < windowHeight * 0.85) {
+        el.classList.add('active');
+      }
+    });
+
+    const backTop = document.getElementById('backTop');
+    if (window.scrollY > 400) {
+      backTop.classList.add('show');
+    } else {
+      backTop.classList.remove('show');
+    }
+  });
+  window.dispatchEvent(new Event('scroll'));
+
+  // 主题切换
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    const icon = themeToggle.querySelector('i');
+    if (document.body.classList.contains('light')) {
+      icon.className = 'fa-solid fa-sun';
+    } else {
+      icon.className = 'fa-solid fa-moon';
+    }
+  });
+
+  // 图片预览
+  function openImg(el) {
+    const modal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = el.querySelector('img').src;
+    modal.classList.add('show');
+  }
+  function closeModal() {
+    document.getElementById('imgModal').classList.remove('show');
+  }
+
+  // 折叠面板
+  function toggleCollapse(el) {
+    const body = el.nextElementSibling;
+    body.classList.toggle('show');
+    const icon = el.querySelector('i');
+    icon.classList.toggle('fa-chevron-up');
+  }
+
+  // 提示
+  function showTip(text) {
+    alert(text);
+  }
+  function showSkillInfo(name) {
+    alert('【' + name + '】\n点击查看技能详情');
+  }
+  function copyInfo(text) {
+    alert('已复制：' + text);
+  }
+
+  // 滚动
+  function scrollToContact() {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }
+  function toTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 快捷弹窗
+  function openGalleryModal() {
+    document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      alert('点击任意图片即可放大查看');
+    }, 300);
+  }
+  function openAboutModal() {
+    document.getElementById('more').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      alert('点击标题可展开/收起内容');
+    }, 300);
+  }
+
+  // 背景音乐
+  const bgm = document.getElementById('bgm');
+  const musicBtn = document.getElementById('musicToggle');
+  let isPlay = false;
+
+  bgm.volume = 0.35;
+
+  musicBtn.addEventListener('click', () => {
+    if (!isPlay) {
+      bgm.play();
+      musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      isPlay = true;
+    } else {
+      bgm.pause();
+      musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+      isPlay = false;
+    }
+  });
+</script>
+</body>
 </html>
